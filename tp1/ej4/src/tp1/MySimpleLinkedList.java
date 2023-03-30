@@ -5,11 +5,14 @@ package tp1;
  *
  * @param <T>
  * 
- * Ejercicio 1.
-   Implemente los métodos indicados del esqueleto de Lista desarrollado en Teoría
-   (insertFront, extractFront, isEmpty, size, toString). 
-   Agregar también el método: T get(index)
- */
+
+/*
+Ejercicio 4.
+A la implementación de la clase Lista realizada en el ejercicio 1, agregue un método
+indexOf, que reciba un elemento y retorne el índice donde está almacenado ese elemento, o
+-1 si el elemento no existe en la lista.
+*/
+
 public class MySimpleLinkedList<T> {
 	
 	private Node<T> first;
@@ -56,6 +59,17 @@ public class MySimpleLinkedList<T> {
 	
 	public int size() {
 		return this.size;
+	}
+	
+	public int indexOf(T info) {
+		if (!isEmpty()) {
+			for (int i = 0; i < this.size; i++) {
+				if (info.equals(this.get(i))) {
+					return i;
+				}
+			}			
+		}
+		return -1;		
 	}
 	
 	@Override
