@@ -1,8 +1,10 @@
 package tudai.prog3.colecctions;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 
 public class GrafoDirigido<T> implements Grafo<T> {
 
@@ -86,26 +88,32 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 	@Override
 	public Iterator<Integer> obtenerVertices() {
-		// TODO Auto-generated method stub
-		return null;
+		return vertices.keySet().iterator();
 	}
 
 	@Override
 	public Iterator<Integer> obtenerAdyacentes(int verticeId) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Integer> adyacentes = new ArrayList<Integer>();
+		for (Iterator<Arco<T>> it = vertices.get(verticeId).iterator(); it.hasNext();) {
+			Arco<T> arco = (Arco<T>) it.next();
+			adyacentes.add(arco.getVerticeDestino());
+		}
+		return adyacentes.iterator();
 	}
 
 	@Override
 	public Iterator<Arco<T>> obtenerArcos() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Arco<T>> arcos = new ArrayList<Arco<T>>();
+		for (Iterator<Integer> iterator = vertices.keySet().iterator(); iterator.hasNext();) {
+			Integer vertice = (Integer) iterator.next();
+			arcos.addAll(vertices.get(vertice));
+		}
+		return arcos.iterator();
 	}
 
 	@Override
 	public Iterator<Arco<T>> obtenerArcos(int verticeId) {
-		// TODO Auto-generated method stub
-		return null;
+		return vertices.get(verticeId).iterator();
 	}
 
 }
