@@ -83,4 +83,35 @@ public class DFS {
 		return resultado;
 	}
 
+	public boolean tieneCiclos(Grafo<String> g) {
+		this.inicializarEstructura();
+		for (Iterator<Integer> iterator = grafo.obtenerVertices(); iterator.hasNext();) {
+			Integer vertice = (Integer) iterator.next();
+			if (colores.get(vertice).equals("BLANCO")) {
+				if (tieneCiclos(vertice)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	private boolean tieneCiclos(Integer vertice) {
+		List<Integer> resultado = new ArrayList<Integer>();
+		colores.put(vertice, "AMARILLO");
+		resultado.add(vertice);
+		for (Iterator<Integer> it = grafo.obtenerAdyacentes(vertice); it.hasNext();) {
+			Integer adyacente = (Integer) it.next();
+			if (colores.get(adyacente).equals("BLANCO")) {
+				return tieneCiclos(adyacente);
+			} else {
+				if (colores.get(adyacente).equals("AMARILLO")) {
+					return true;
+				}
+			}
+		}
+		colores.put(vertice, "NEGRO");
+		return false;
+	}
+
 }

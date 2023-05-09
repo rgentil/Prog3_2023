@@ -8,7 +8,9 @@ import tudai.prog3.recorridos.DFS;
 /**
  * Ejercicio 1. Implemente en JAVA las clases GrafoDirigido y GrafoNoDirigido.
  * Ejercicio 2. Implemente los recorridos Depth-First-Search y
- * Breadth-First-Search.
+ * Breadth-First-Search. 
+ * Ejercicio 3. Implemente un algoritmo que determine si
+ * un grafo dirigido tiene algún ciclo.
  * 
  * @author Gentil Ricardo
  *
@@ -35,6 +37,8 @@ public class Main {
 		BFS bfs = new BFS(g);
 		System.out.println(bfs.getRecorrido().toString());
 
+		System.out.println("\nComprobar si un grafo dirigido tiene algún ciclo");
+		System.out.println("Tiene ciclos: " + dfs.tieneCiclos(g));
 	}
 
 }
