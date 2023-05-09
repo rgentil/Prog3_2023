@@ -21,7 +21,7 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 	@Override
 	public void agregarVertice(int verticeId) {
-		if (!vertices.containsKey(verticeId)) {
+		if (!this.contieneVertice(verticeId)) {
 			vertices.put(verticeId, new HashSet<Arco<T>>());
 			nroVertices++;
 		}
@@ -29,7 +29,7 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 	@Override
 	public void borrarVertice(int verticeId) {
-		if (vertices.containsKey(verticeId)) {
+		if (this.contieneVertice(verticeId)) {
 			for (Iterator<Arco<T>> it = vertices.get(verticeId).iterator(); it.hasNext();) {
 				Arco<T> arco = (Arco<T>) it.next();
 				this.borrarArco(verticeId, arco.getVerticeDestino());
@@ -104,7 +104,7 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	@Override
 	public Iterator<Arco<T>> obtenerArcos() {
 		List<Arco<T>> arcos = new ArrayList<Arco<T>>();
-		for (Iterator<Integer> iterator = vertices.keySet().iterator(); iterator.hasNext();) {
+		for (Iterator<Integer> iterator = this.obtenerVertices(); iterator.hasNext();) {
 			Integer vertice = (Integer) iterator.next();
 			arcos.addAll(vertices.get(vertice));
 		}
