@@ -116,4 +116,17 @@ public class GrafoDirigido<T> implements Grafo<T> {
 		return vertices.get(verticeId).iterator();
 	}
 
+	@Override
+	public void imprimir() {
+		for (Iterator<Integer> iteratorV = this.obtenerVertices(); iteratorV.hasNext();) {
+			Integer vertice = (Integer) iteratorV.next();
+			System.out.print(vertice + ": ");
+			for (Iterator<Integer> iteratorA = this.obtenerAdyacentes(vertice); iteratorA.hasNext();) {
+				Integer ady = (Integer) iteratorA.next();
+				System.out.print(ady + " ");
+			}
+			System.out.println();
+		}
+	}
+
 }

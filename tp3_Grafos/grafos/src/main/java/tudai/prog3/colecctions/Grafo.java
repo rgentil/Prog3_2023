@@ -46,4 +46,6 @@ public interface Grafo<T> {
 	// verticeId
 	public Iterator<Arco<T>> obtenerArcos(int verticeId);
 
+	//Imprimir el grafo
+	public void imprimir();
 }
