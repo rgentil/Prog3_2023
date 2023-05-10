@@ -33,6 +33,9 @@ public class BFS {
 	}
 
 	/**
+	 * Ejercicio 2. Implemente los recorridos Depth-First-Search y
+	 * Breadth-First-Search.
+	 * 
 	 * Inicio la estructura. Recorro todos los vertices que no fueron vistados.
 	 * O(|V|+|A|). Va a pasar una vez por cada vertice y una vez por cada arco.
 	 * 

@@ -7,10 +7,7 @@ import tudai.prog3.recorridos.DFS;
 
 /**
  * Ejercicio 1. Implemente en JAVA las clases GrafoDirigido y GrafoNoDirigido.
- * Ejercicio 2. Implemente los recorridos Depth-First-Search y
- * Breadth-First-Search. 
- * Ejercicio 3. Implemente un algoritmo que determine si
- * un grafo dirigido tiene algún ciclo.
+ * 
  * 
  * @author Gentil Ricardo
  *
@@ -18,6 +15,9 @@ import tudai.prog3.recorridos.DFS;
 public class Main {
 
 	public static void main(String[] args) {
+		/**
+		 * Ejercicio 1. Implemente en JAVA las clases GrafoDirigido y GrafoNoDirigido.
+		 */
 		Grafo<String> g = new GrafoDirigido<String>();
 		g.agregarArco(0, 1, "");
 		g.agregarArco(0, 2, "");
@@ -29,6 +29,10 @@ public class Main {
 		System.out.println("Grafo:");
 		g.imprimir();
 
+		/**
+		 * Ejercicio 2. Implemente los recorridos Depth-First-Search y
+		 * Breadth-First-Search.
+		 */
 		System.out.println("\nRecorrido DFS:");
 		DFS dfs = new DFS(g);
 		System.out.println(dfs.getRecorrido().toString());
@@ -37,8 +41,26 @@ public class Main {
 		BFS bfs = new BFS(g);
 		System.out.println(bfs.getRecorrido().toString());
 
+		/**
+		 * Ejercicio 3. Implemente un algoritmo que determine si un grafo dirigido tiene
+		 * algún ciclo.
+		 */
 		System.out.println("\nComprobar si un grafo dirigido tiene algún ciclo");
-		System.out.println("Tiene ciclos: " + dfs.tieneCiclos(g));
+		System.out.println("Tiene ciclos: " + dfs.tieneCiclos());
+
+		/**
+		 * Ejercicio 4. Escribir un algoritmo que, dado un grafo dirigido y dos vértices
+		 * i, j de este grafo, devuelva el camino simple (sin ciclos) de mayor longitud
+		 * del vértice i al vértice j. Puede suponerse que el grafo de entrada es
+		 * acíclico.
+		 */
+
+		System.out.println("\n Camino simple (sin ciclos) de mayor longitud del vértice i al vértice j :\n"
+				+ dfs.getCaminoSimple(0, 3).toString());
+		
+		System.out.println("\nTodos los caminos vértice i al vértice j :\n"
+				+ dfs.getCaminosSimple(0, 3).toString());
+
 	}
 
 }

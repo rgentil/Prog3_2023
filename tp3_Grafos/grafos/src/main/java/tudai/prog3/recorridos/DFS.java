@@ -40,6 +40,9 @@ public class DFS {
 	}
 
 	/**
+	 * Ejercicio 2. Implemente los recorridos Depth-First-Search y
+	 * Breadth-First-Search.
+	 * 
 	 * Inicializa la estrucutra. Complejidad O(|V|+|A|). Va a pasar una vez por cada
 	 * vertice y una vez por cada arco. Recorre todos los vertices que no hayan sido
 	 * ni visitados ni tengo un estado final. O sea, que sea BLANCO. Entonces si
@@ -83,7 +86,11 @@ public class DFS {
 		return resultado;
 	}
 
-	public boolean tieneCiclos(Grafo<String> g) {
+	/**
+	 * Ejercicio 3. Implemente un algoritmo que determine si un grafo dirigido tiene
+	 * algún ciclo.
+	 */
+	public boolean tieneCiclos() {
 		this.inicializarEstructura();
 		for (Iterator<Integer> iterator = grafo.obtenerVertices(); iterator.hasNext();) {
 			Integer vertice = (Integer) iterator.next();
@@ -112,6 +119,72 @@ public class DFS {
 		}
 		colores.put(vertice, "NEGRO");
 		return false;
+	}
+
+	/**
+	 * Ejercicio 4. Escribir un algoritmo que, dado un grafo dirigido y dos vértices
+	 * i, j de este grafo, devuelva el camino simple (sin ciclos) de mayor longitud
+	 * del vértice i al vértice j. Puede suponerse que el grafo de entrada es
+	 * acíclico.
+	 */
+	public List<Integer> getCaminoSimple(Integer i, Integer j) {
+		this.inicializarEstructura();
+		List<Integer> caminoFinal = new ArrayList<Integer>();
+		List<Integer> caminoAux = new ArrayList<Integer>();
+		getCaminoSimple(i, j, caminoFinal, caminoAux);
+		return caminoFinal;
+	}
+
+	private void getCaminoSimple(Integer i, Integer j, List<Integer> caminoFinal, List<Integer> caminoAux) {
+		colores.put(i, "AMARILLO");
+		caminoAux.add(i);
+		if (i == j) {
+			if (caminoFinal.size() < caminoAux.size()) {
+				caminoFinal.clear();
+				caminoFinal.addAll(new ArrayList<Integer>(caminoAux));
+			}
+		} else {
+			for (Iterator<Integer> it = grafo.obtenerAdyacentes(i); it.hasNext();) {
+				Integer adyacente = (Integer) it.next();
+				if (colores.get(adyacente).equals("BLANCO")) {
+					getCaminoSimple(adyacente, j, caminoFinal, caminoAux);
+				}
+			}
+		}
+		colores.put(i, "BLANCO");
+		caminoAux.remove(caminoAux.size() - 1);
+
+	}
+
+	/**
+	 * Variedad del ejercicio para 4 para que devuelva todos los caminos.
+	 * @param i
+	 * @param j
+	 * @return
+	 */
+	public List<List<Integer>> getCaminosSimple(Integer i, Integer j) {
+		this.inicializarEstructura();
+		List<List<Integer>> caminosFinal = new ArrayList<List<Integer>>();
+		List<Integer> caminoAux = new ArrayList<Integer>();
+		getCaminosSimple(i, j, caminosFinal, caminoAux);
+		return caminosFinal;
+	}
+
+	private void getCaminosSimple(Integer i, Integer j, List<List<Integer>> caminosFinal, List<Integer> caminoAux) {
+		colores.put(i, "AMARILLO");
+		caminoAux.add(i);
+		if (i == j) {
+			caminosFinal.add(new ArrayList<Integer>(caminoAux));
+		} else {
+			for (Iterator<Integer> it = grafo.obtenerAdyacentes(i); it.hasNext();) {
+				Integer adyacente = (Integer) it.next();
+				if (colores.get(adyacente).equals("BLANCO")) {
+					getCaminosSimple(adyacente, j, caminosFinal, caminoAux);
+				}
+			}
+		}	
+		colores.put(i, "BLANCO");
+		caminoAux.remove(caminoAux.size() - 1);
 	}
 
 }
