@@ -28,7 +28,6 @@ public class BFS {
 		for (Iterator<Integer> iterator = grafo.obtenerVertices(); iterator.hasNext();) {
 			Integer vertice = (Integer) iterator.next();
 			visitados.put(vertice, false);
-
 		}
 	}
 
@@ -80,6 +79,52 @@ public class BFS {
 			}
 		}
 		return salida;
+	}
+
+	/**
+	 * Ejercicio 7. Supongamos que una ciudad se encuentra modelada mediante un
+	 * grafo, donde cada nodo es una esquina, y las aristas representan las calles.
+	 * Diseñe un algoritmo tal que dadas dos esquinas, devuelva el camino más corto
+	 * entre ambas de manera de caminar la menor cantidad de cuadras posible.
+	 */
+	public ArrayList<Integer> caminoMasCorto(int origen, int destino) {
+		this.iniciarEstructura();
+		return _caminoMasCorto(origen, destino);
+	}
+
+	private ArrayList<Integer> _caminoMasCorto(int origen, int destino) {
+		ArrayList<Integer> fila = new ArrayList<>(); // Usado para agregar y sacar. Agrego al final saco al principio.
+														// Funciona como una cola.
+		HashMap<Integer, Integer> padres = new HashMap<>();
+		visitados.put(origen, true);
+		fila.add(origen);
+		boolean llegue = false; // Para cortar, podría usar un break
+		while (!fila.isEmpty() && !llegue) {
+			int vertice = fila.remove(0); // Tomamos vértice de la fila,
+			for (Iterator<Integer> it = this.grafo.obtenerAdyacentes(vertice); it.hasNext() && !llegue;) {
+				Integer ady = (Integer) it.next();
+				if (!this.visitados.get(ady)) { // Si y es NO_VISITADO
+					this.visitados.put(ady, true); // Marcar el adyacente como VISITADO.
+					fila.add(ady); // Agregar adyacente a la fila F.
+					padres.put(ady, vertice);
+					if (ady == destino) {
+						llegue = true;
+					}
+				}
+			}
+		}
+
+		if (llegue) {
+			ArrayList<Integer> salida = new ArrayList<>();
+			Integer aux = destino;
+			while (aux != null) {
+				salida.add(0, aux);
+				aux = padres.get(aux);
+			}
+			return salida;
+		} else {
+			return null;
+		}
 	}
 
 }

@@ -153,14 +153,14 @@ public class DFS {
 		}
 		colores.put(i, "BLANCO");
 		caminoAux.remove(caminoAux.size() - 1);
-
 	}
 
 	/**
 	 * Variedad del ejercicio para 4 para que devuelva todos los caminos.
-	 * @param i
-	 * @param j
-	 * @return
+	 * 
+	 * @param i vértice de inicio
+	 * @param j vértice final
+	 * @return Lista con todos los caminos posibles para llegar de i a j
 	 */
 	public List<List<Integer>> getCaminosSimple(Integer i, Integer j) {
 		this.inicializarEstructura();
@@ -182,9 +182,57 @@ public class DFS {
 					getCaminosSimple(adyacente, j, caminosFinal, caminoAux);
 				}
 			}
-		}	
+		}
 		colores.put(i, "BLANCO");
 		caminoAux.remove(caminoAux.size() - 1);
 	}
 
+	/**
+	 * Ejercicio 5. Escriba un algoritmo que dado un grafo G y un vértice v de dicho
+	 * grafo, devuelva una lista con todos los vértices a partir de los cuales
+	 * exista un camino en G que termine en v.
+	 */
+	public List<List<Integer>> getCaminosTerminanEnV(int v) {
+		this.inicializarEstructura();
+		List<List<Integer>> caminosPorVertices = new ArrayList<List<Integer>>();
+		List<List<Integer>> caminosFinales = new ArrayList<List<Integer>>();
+		for (Iterator<Integer> it = grafo.obtenerVertices(); it.hasNext();) {
+			Integer vertice = it.next();
+			caminosPorVertices.clear();
+			caminosPorVertices = getCaminosSimple(vertice, v);
+			for (Iterator<List<Integer>> iterator = caminosPorVertices.iterator(); iterator.hasNext();) {
+				List<Integer> list = (List<Integer>) iterator.next();
+				caminosFinales.add(list);
+			}
+		}
+		return caminosFinales;
+	}
+
+	/**
+	 * Ejercicio 6. Supongamos una conexión entre computadoras (1, ... ,n) que se
+	 * encuentra modelada mediante un grafo. Se requiere, si existe, dar una
+	 * conexión entre dos computadoras a y b existentes sabiendo que la computadora
+	 * i está fuera de servicio.
+	 */
+	public boolean existeConeccion(int a, int b, int i) {
+		this.inicializarEstructura();
+		colores.put(i, "NEGRO");
+		boolean existe = _existeConeccion(a, b);
+		return existe;
+	}
+
+	private boolean _existeConeccion(int a, int b) {
+		colores.put(a, "AMARILLO");
+		if (a == b) {
+			return true;
+		} else {
+			for (Iterator<Integer> it = grafo.obtenerAdyacentes(a); it.hasNext();) {
+				Integer ady = (Integer) it.next();
+				if (colores.get(ady).equals("BLANCO")) {
+					_existeConeccion(ady, b);
+				}
+			}
+		}
+		return false;
+	}
 }

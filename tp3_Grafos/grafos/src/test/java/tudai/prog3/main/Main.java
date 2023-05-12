@@ -57,10 +57,15 @@ public class Main {
 
 		System.out.println("\n Camino simple (sin ciclos) de mayor longitud del vértice i al vértice j :\n"
 				+ dfs.getCaminoSimple(0, 3).toString());
-		
-		System.out.println("\nTodos los caminos vértice i al vértice j :\n"
-				+ dfs.getCaminosSimple(0, 3).toString());
 
+		System.out.println("\nTodos los caminos vértice i al vértice j :\n" + dfs.getCaminosSimple(0, 3).toString());
+
+		/**
+		 * Ejercicio 5. Escriba un algoritmo que dado un grafo G y un vértice v de dicho
+		 * grafo, devuelva una lista con todos los vértices a partir de los cuales
+		 * exista un camino en G que termine en v.
+		 */
+		System.out.println("\nTodos los caminos que terminan en V :\n" + dfs.getCaminosTerminanEnV(3).toString());
 	}
 
 }
