@@ -104,17 +104,14 @@ public class DFS {
 	}
 
 	private boolean tieneCiclos(Integer vertice) {
-		List<Integer> resultado = new ArrayList<Integer>();
 		colores.put(vertice, "AMARILLO");
-		resultado.add(vertice);
 		for (Iterator<Integer> it = grafo.obtenerAdyacentes(vertice); it.hasNext();) {
 			Integer adyacente = (Integer) it.next();
 			if (colores.get(adyacente).equals("BLANCO")) {
-				return tieneCiclos(adyacente);
-			} else {
-				if (colores.get(adyacente).equals("AMARILLO")) {
-					return true;
-				}
+				tieneCiclos(adyacente);
+			} 
+			if (colores.get(adyacente).equals("AMARILLO")) {
+				return true;
 			}
 		}
 		colores.put(vertice, "NEGRO");
@@ -198,12 +195,14 @@ public class DFS {
 		List<List<Integer>> caminosFinales = new ArrayList<List<Integer>>();
 		for (Iterator<Integer> it = grafo.obtenerVertices(); it.hasNext();) {
 			Integer vertice = it.next();
-			caminosPorVertices.clear();
-			caminosPorVertices = getCaminosSimple(vertice, v);
-			for (Iterator<List<Integer>> iterator = caminosPorVertices.iterator(); iterator.hasNext();) {
-				List<Integer> list = (List<Integer>) iterator.next();
-				caminosFinales.add(list);
-			}
+			
+				caminosPorVertices.clear();
+				caminosPorVertices = getCaminosSimple(vertice, v);
+				for (Iterator<List<Integer>> iterator = caminosPorVertices.iterator(); iterator.hasNext();) {
+					List<Integer> list = (List<Integer>) iterator.next();
+					caminosFinales.add(list);
+				}
+			
 		}
 		return caminosFinales;
 	}

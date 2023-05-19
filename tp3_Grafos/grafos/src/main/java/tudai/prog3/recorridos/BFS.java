@@ -93,12 +93,11 @@ public class BFS {
 	}
 
 	private ArrayList<Integer> _caminoMasCorto(int origen, int destino) {
-		ArrayList<Integer> fila = new ArrayList<>(); // Usado para agregar y sacar. Agrego al final saco al principio.
-														// Funciona como una cola.
+		ArrayList<Integer> fila = new ArrayList<>(); //Usado para agregar y sacar. Agrego al final saco al principio. Funciona como una cola.
 		HashMap<Integer, Integer> padres = new HashMap<>();
 		visitados.put(origen, true);
 		fila.add(origen);
-		boolean llegue = false; // Para cortar, podría usar un break
+		boolean llegue = false; //Para cortar, podría usar un break
 		while (!fila.isEmpty() && !llegue) {
 			int vertice = fila.remove(0); // Tomamos vértice de la fila,
 			for (Iterator<Integer> it = this.grafo.obtenerAdyacentes(vertice); it.hasNext() && !llegue;) {
