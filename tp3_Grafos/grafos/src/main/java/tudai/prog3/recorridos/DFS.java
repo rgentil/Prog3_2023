@@ -49,7 +49,7 @@ public class DFS {
 	 * Inicializa la estrucutra. Complejidad O(|V|+|A|). Va a pasar una vez por cada
 	 * vertice y una vez por cada arco. Recorre todos los vertices que no hayan sido
 	 * ni visitados ni tengo un estado final. O sea, que sea BLANCO. Entonces si
-	 * inicia el recorrido desde ese vï¿½rtice.
+	 * inicia el recorrido desde ese v�rtice.
 	 * 
 	 * @return Lista del recorrido
 	 */
@@ -66,8 +66,8 @@ public class DFS {
 	}
 
 	/**
-	 * Se realiza el recorrido desde un vï¿½rtice. Se coloca el estado parcial
-	 * AMARILLO. Se agrega a la soluciï¿½n. Se recorren los vï¿½rtices adyancente y
+	 * Se realiza el recorrido desde un v�rtice. Se coloca el estado parcial
+	 * AMARILLO. Se agrega a la soluci�n. Se recorren los v�rtices adyancente y
 	 * se llama recursivo con cada vertices adyacente en estado inicial, BLANCO.
 	 * Cuando se recorrieron todos los adyacentes de ese vertice (sale del for) el
 	 * vertice se marca en NEGRO
@@ -91,7 +91,7 @@ public class DFS {
 
 	/**
 	 * Ejercicio 3. Implemente un algoritmo que determine si un grafo dirigido tiene
-	 * algï¿½n ciclo.
+	 * alg�n ciclo.
 	 */
 	public boolean tieneCiclos() {
 		this.inicializarEstructura();
@@ -123,9 +123,9 @@ public class DFS {
 
 	/**
 	 * Ejercicio 4. Escribir un algoritmo que, dado un grafo dirigido y dos
-	 * vï¿½rtices i, j de este grafo, devuelva el camino simple (sin ciclos) de
-	 * mayor longitud del vï¿½rtice i al vï¿½rtice j. Puede suponerse que el grafo
-	 * de entrada es acï¿½clico.
+	 * v�rtices i, j de este grafo, devuelva el camino simple (sin ciclos) de
+	 * mayor longitud del v�rtice i al v�rtice j. Puede suponerse que el grafo
+	 * de entrada es ac�clico.
 	 */
 	public List<Integer> getCaminoSimple(Integer i, Integer j) {
 		this.inicializarEstructura();
@@ -158,8 +158,8 @@ public class DFS {
 	/**
 	 * Variedad del ejercicio para 4 para que devuelva todos los caminos.
 	 * 
-	 * @param i vï¿½rtice de inicio
-	 * @param j vï¿½rtice final
+	 * @param i v�rtice de inicio
+	 * @param j v�rtice final
 	 * @return Lista con todos los caminos posibles para llegar de i a j
 	 */
 	public List<List<Integer>> getCaminosSimple(Integer i, Integer j) {
@@ -188,8 +188,8 @@ public class DFS {
 	}
 
 	/**
-	 * Ejercicio 5. Escriba un algoritmo que dado un grafo G y un vï¿½rtice v de
-	 * dicho grafo, devuelva una lista con todos los vï¿½rtices a partir de los
+	 * Ejercicio 5. Escriba un algoritmo que dado un grafo G y un v�rtice v de
+	 * dicho grafo, devuelva una lista con todos los v�rtices a partir de los
 	 * cuales exista un camino en G que termine en v.
 	 */
 	public List<List<Integer>> getCaminosTerminanEnV(int v) {
@@ -210,10 +210,10 @@ public class DFS {
 	}
 
 	/**
-	 * Ejercicio 6. Supongamos una conexiï¿½n entre computadoras (1, ... ,n) que se
+	 * Ejercicio 6. Supongamos una conexi�n entre computadoras (1, ... ,n) que se
 	 * encuentra modelada mediante un grafo. Se requiere, si existe, dar una
-	 * conexiï¿½n entre dos computadoras a y b existentes sabiendo que la
-	 * computadora i estï¿½ fuera de servicio.
+	 * conexi�n entre dos computadoras a y b existentes sabiendo que la
+	 * computadora i est� fuera de servicio.
 	 */
 	public boolean existeConeccion(int a, int b, int i) {
 		this.inicializarEstructura();
@@ -238,19 +238,19 @@ public class DFS {
 	}
 
 	/**
-	 * Caminos : dado un origen, un destino y un límite “lim” retorna todos los
-	 * caminos que, partiendo del vértice origen, llega al vértice de destino sin
-	 * pasar por más de “lim” arcos. Aclaración importante: en un camino no se puede
+	 * Caminos : dado un origen, un destino y un l�mite retorna todos los
+	 * caminos que, partiendo del v�rtice origen, llega al v�rtice de destino sin
+	 * pasar por m�s de lim arcos. Aclaraci�n importante: en un camino no se puede
 	 * pasar 2 veces por el mismo arco.
 	 */
-	public List<List<Integer>> tpe_caminos(int origen, int destino, int lim) {
+	public List<List<Integer>> tpe_caminos(Integer origen, Integer destino, Integer lim) {
 		List<List<Integer>> caminos = new ArrayList<List<Integer>>();
 		List<Integer> camino = new ArrayList<Integer>();
 		_tpe_caminos(origen, destino, lim, 0, camino, caminos);
 		return caminos;
 	}
 
-	private void _tpe_caminos(int origen, int destino, int lim, int lim_arcos, List<Integer> camino,
+	private void _tpe_caminos(Integer origen, Integer destino, Integer lim, Integer lim_arcos, List<Integer> camino,
 			List<List<Integer>> caminos) {
 		camino.add(origen);
 		if (origen == destino && lim_arcos <= lim) {
@@ -268,7 +268,7 @@ public class DFS {
 				}
 			}
 		}
-		camino.remove(camino.size()-1);
+		camino.remove(origen);
 	}
 
 }
