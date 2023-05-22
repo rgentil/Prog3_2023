@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import tudai.prog3.colecctions.Arco;
 import tudai.prog3.colecctions.Grafo;
 
 /*
@@ -16,6 +17,7 @@ public class DFS {
 
 	private Grafo<?> grafo;
 	private HashMap<Integer, String> colores;
+	private List<Arco<?>> arcos_recorridos;
 
 	/**
 	 * Constructor de la clase
@@ -25,6 +27,7 @@ public class DFS {
 	public DFS(Grafo<?> g) {
 		this.grafo = g;
 		this.colores = new HashMap<Integer, String>();
+		this.arcos_recorridos = new ArrayList<Arco<?>>();
 	}
 
 	/**
@@ -46,7 +49,7 @@ public class DFS {
 	 * Inicializa la estrucutra. Complejidad O(|V|+|A|). Va a pasar una vez por cada
 	 * vertice y una vez por cada arco. Recorre todos los vertices que no hayan sido
 	 * ni visitados ni tengo un estado final. O sea, que sea BLANCO. Entonces si
-	 * inicia el recorrido desde ese v�rtice.
+	 * inicia el recorrido desde ese vï¿½rtice.
 	 * 
 	 * @return Lista del recorrido
 	 */
@@ -63,11 +66,11 @@ public class DFS {
 	}
 
 	/**
-	 * Se realiza el recorrido desde un v�rtice. Se coloca el estado parcial
-	 * AMARILLO. Se agrega a la soluci�n. Se recorren los v�rtices adyancente y se
-	 * llama recursivo con cada vertices adyacente en estado inicial, BLANCO. Cuando
-	 * se recorrieron todos los adyacentes de ese vertice (sale del for) el vertice
-	 * se marca en NEGRO
+	 * Se realiza el recorrido desde un vï¿½rtice. Se coloca el estado parcial
+	 * AMARILLO. Se agrega a la soluciï¿½n. Se recorren los vï¿½rtices adyancente y
+	 * se llama recursivo con cada vertices adyacente en estado inicial, BLANCO.
+	 * Cuando se recorrieron todos los adyacentes de ese vertice (sale del for) el
+	 * vertice se marca en NEGRO
 	 * 
 	 * @param vertice punto de partida
 	 * @return lista de camino
@@ -88,7 +91,7 @@ public class DFS {
 
 	/**
 	 * Ejercicio 3. Implemente un algoritmo que determine si un grafo dirigido tiene
-	 * alg�n ciclo.
+	 * algï¿½n ciclo.
 	 */
 	public boolean tieneCiclos() {
 		this.inicializarEstructura();
@@ -109,7 +112,7 @@ public class DFS {
 			Integer adyacente = (Integer) it.next();
 			if (colores.get(adyacente).equals("BLANCO")) {
 				tieneCiclos(adyacente);
-			} 
+			}
 			if (colores.get(adyacente).equals("AMARILLO")) {
 				return true;
 			}
@@ -119,10 +122,10 @@ public class DFS {
 	}
 
 	/**
-	 * Ejercicio 4. Escribir un algoritmo que, dado un grafo dirigido y dos v�rtices
-	 * i, j de este grafo, devuelva el camino simple (sin ciclos) de mayor longitud
-	 * del v�rtice i al v�rtice j. Puede suponerse que el grafo de entrada es
-	 * ac�clico.
+	 * Ejercicio 4. Escribir un algoritmo que, dado un grafo dirigido y dos
+	 * vï¿½rtices i, j de este grafo, devuelva el camino simple (sin ciclos) de
+	 * mayor longitud del vï¿½rtice i al vï¿½rtice j. Puede suponerse que el grafo
+	 * de entrada es acï¿½clico.
 	 */
 	public List<Integer> getCaminoSimple(Integer i, Integer j) {
 		this.inicializarEstructura();
@@ -155,8 +158,8 @@ public class DFS {
 	/**
 	 * Variedad del ejercicio para 4 para que devuelva todos los caminos.
 	 * 
-	 * @param i v�rtice de inicio
-	 * @param j v�rtice final
+	 * @param i vï¿½rtice de inicio
+	 * @param j vï¿½rtice final
 	 * @return Lista con todos los caminos posibles para llegar de i a j
 	 */
 	public List<List<Integer>> getCaminosSimple(Integer i, Integer j) {
@@ -185,9 +188,9 @@ public class DFS {
 	}
 
 	/**
-	 * Ejercicio 5. Escriba un algoritmo que dado un grafo G y un v�rtice v de dicho
-	 * grafo, devuelva una lista con todos los v�rtices a partir de los cuales
-	 * exista un camino en G que termine en v.
+	 * Ejercicio 5. Escriba un algoritmo que dado un grafo G y un vï¿½rtice v de
+	 * dicho grafo, devuelva una lista con todos los vï¿½rtices a partir de los
+	 * cuales exista un camino en G que termine en v.
 	 */
 	public List<List<Integer>> getCaminosTerminanEnV(int v) {
 		this.inicializarEstructura();
@@ -195,23 +198,22 @@ public class DFS {
 		List<List<Integer>> caminosFinales = new ArrayList<List<Integer>>();
 		for (Iterator<Integer> it = grafo.obtenerVertices(); it.hasNext();) {
 			Integer vertice = it.next();
-			
-				caminosPorVertices.clear();
-				caminosPorVertices = getCaminosSimple(vertice, v);
-				for (Iterator<List<Integer>> iterator = caminosPorVertices.iterator(); iterator.hasNext();) {
-					List<Integer> list = (List<Integer>) iterator.next();
-					caminosFinales.add(list);
-				}
-			
+			caminosPorVertices.clear();
+			caminosPorVertices = getCaminosSimple(vertice, v);
+			for (Iterator<List<Integer>> iterator = caminosPorVertices.iterator(); iterator.hasNext();) {
+				List<Integer> list = (List<Integer>) iterator.next();
+				caminosFinales.add(list);
+			}
+
 		}
 		return caminosFinales;
 	}
 
 	/**
-	 * Ejercicio 6. Supongamos una conexi�n entre computadoras (1, ... ,n) que se
+	 * Ejercicio 6. Supongamos una conexiï¿½n entre computadoras (1, ... ,n) que se
 	 * encuentra modelada mediante un grafo. Se requiere, si existe, dar una
-	 * conexi�n entre dos computadoras a y b existentes sabiendo que la computadora
-	 * i est� fuera de servicio.
+	 * conexiï¿½n entre dos computadoras a y b existentes sabiendo que la
+	 * computadora i estï¿½ fuera de servicio.
 	 */
 	public boolean existeConeccion(int a, int b, int i) {
 		this.inicializarEstructura();
@@ -234,4 +236,39 @@ public class DFS {
 		}
 		return false;
 	}
+
+	/**
+	 * Caminos : dado un origen, un destino y un límite “lim” retorna todos los
+	 * caminos que, partiendo del vértice origen, llega al vértice de destino sin
+	 * pasar por más de “lim” arcos. Aclaración importante: en un camino no se puede
+	 * pasar 2 veces por el mismo arco.
+	 */
+	public List<List<Integer>> tpe_caminos(int origen, int destino, int lim) {
+		List<List<Integer>> caminos = new ArrayList<List<Integer>>();
+		List<Integer> camino = new ArrayList<Integer>();
+		_tpe_caminos(origen, destino, lim, 0, camino, caminos);
+		return caminos;
+	}
+
+	private void _tpe_caminos(int origen, int destino, int lim, int lim_arcos, List<Integer> camino,
+			List<List<Integer>> caminos) {
+		camino.add(origen);
+		if (origen == destino && lim_arcos <= lim) {
+			caminos.add(new ArrayList<Integer>(camino));
+		} else {
+			for (Iterator<Integer> it = grafo.obtenerAdyacentes(origen); it.hasNext();) {
+				Integer ady = (Integer) it.next();
+				Arco<?> arco = new Arco<Integer>(origen, ady, null);
+				if (!arcos_recorridos.contains(arco)) {
+					lim_arcos++;
+					arcos_recorridos.add(arco);
+					_tpe_caminos(ady, destino, lim, lim_arcos, camino, caminos);
+					lim_arcos--;
+					arcos_recorridos.remove(arco);
+				}
+			}
+		}
+		camino.remove(camino.size()-1);
+	}
+
 }

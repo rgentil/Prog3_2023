@@ -30,16 +30,16 @@ public class Main {
 //		g.agregarArco(11, 10, "");
 //		g.agregarArco(11, 8, "");
 //		
-		
+
 		g.agregarArco(1, 2, null);
 		g.agregarArco(1, 3, null);
 		g.agregarArco(2, 5, null);
 		g.agregarArco(3, 4, null);
 		g.agregarArco(4, 5, null);
-		
-		//Ciclo
+
+		// Ciclo
 		g.agregarArco(4, 1, null);
-		
+
 		System.out.println("Grafo:");
 		g.imprimir();
 
@@ -69,12 +69,13 @@ public class Main {
 		 * acíclico.
 		 */
 
-		int i = 11;
-		int j = 11;
-		System.out.println("\n Camino simple (sin ciclos) de mayor longitud del vértice "+i+" al vértice "+j+" :\n"
-				+ dfs.getCaminoSimple(i, j).toString());
+		int i = 1;
+		int j = 5;
+		System.out.println("\n Camino simple (sin ciclos) de mayor longitud del vértice " + i + " al vértice " + j
+				+ " :\n" + dfs.getCaminoSimple(i, j).toString());
 
-		System.out.println("\nTodos los caminos vértice "+i+" al vértice "+j+" :\n" + dfs.getCaminosSimple(i, j).toString());
+		System.out.println("\nTodos los caminos vértice " + i + " al vértice " + j + " :\n"
+				+ dfs.getCaminosSimple(i, j).toString());
 
 		/**
 		 * Ejercicio 5. Escriba un algoritmo que dado un grafo G y un vértice v de dicho
@@ -82,7 +83,21 @@ public class Main {
 		 * exista un camino en G que termine en v.
 		 */
 		int v = 11;
-		System.out.println("\nTodos los caminos que terminan en "+v+" :\n" + dfs.getCaminosTerminanEnV(v).toString());
+		System.out
+				.println("\nTodos los caminos que terminan en " + v + " :\n" + dfs.getCaminosTerminanEnV(v).toString());
+
+		/**
+		 * Caminos : dado un origen, un destino y un límite “lim” retorna todos los
+		 * caminos que, partiendo del vértice origen, llega al vértice de destino sin
+		 * pasar por más de “lim” arcos. Aclaración importante: en un camino no se puede
+		 * pasar 2 veces por el mismo arco.
+		 */
+		int origen = 1;
+		int destino = 5;
+		int lim = 5;
+		
+		System.out
+				.println("\nTPE \n Origen: " + origen + " \n" + " Desino: " + destino + " \n Limite: " + lim +"\n" + dfs.tpe_caminos(origen, destino,lim).toString());
 	}
 
 }
