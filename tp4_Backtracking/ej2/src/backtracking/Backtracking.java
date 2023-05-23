@@ -1,5 +1,11 @@
 package backtracking;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import Coleccion.Laberinto;
+import Coleccion.Nodo;
+
 /**
  * Ejercicio 2. Dado un laberinto consistente en una matriz cuadrada que tiene
  * en cada posición un valor natural y cuatro valores booleanos, indicando estos
@@ -15,4 +21,51 @@ package backtracking;
  */
 public class Backtracking {
 
+	private Laberinto laberinto;
+	private List<Nodo> nodosVisitados;
+	private Integer valorFinal;
+
+	public Backtracking(Laberinto l) {
+		this.laberinto = l;
+		this.nodosVisitados = new ArrayList<Nodo>();
+		this.valorFinal = null;
+	}
+
+	public List<Nodo> getCaminoMinimo(int fi, int ci, int fd, int cd) {
+		List<Nodo> caminoActual = new ArrayList<Nodo>();
+		List<Nodo> resultado = new ArrayList<Nodo>();
+		this.valorFinal = null;
+		Integer valorParcial = 0;
+		Nodo nodoActual = laberinto.getNodo(fi, ci);
+		nodosVisitados.add(nodoActual);
+		Nodo nodoDestino = laberinto.getNodo(fd, cd);
+		_getCaminoMinimo(nodoActual, nodoDestino, caminoActual, resultado, valorParcial);
+		return resultado;
+	}
+
+	private void _getCaminoMinimo(Nodo nodoActual, Nodo nodoDestino, List<Nodo> caminoActual, List<Nodo> resultado,
+			Integer valorParcial) {
+
+		caminoActual.add(nodoActual);
+		valorParcial += nodoActual.getValor();
+
+		if (nodoActual.equals(nodoDestino)) {
+			if (valorFinal == null || valorFinal >= valorParcial) {
+				valorFinal = valorParcial;
+				resultado.clear();
+				resultado.addAll(caminoActual);
+			}
+		} else {
+			for (Nodo nodoVecino : laberinto.getNodosDesde(nodoActual)) {
+				if (!nodosVisitados.contains(nodoVecino)) {
+					nodosVisitados.add(nodoVecino);
+					_getCaminoMinimo(nodoVecino, nodoDestino, caminoActual, resultado, valorParcial);
+					nodosVisitados.remove(nodoVecino);
+
+				}
+			}
+		}
+		caminoActual.remove(nodoActual);
+		valorParcial -= nodoActual.getValor();
+	}
 }
