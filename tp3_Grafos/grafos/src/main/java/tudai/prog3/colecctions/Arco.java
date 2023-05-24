@@ -38,7 +38,7 @@ public class Arco<T> {
 		if (getClass() != obj.getClass())
 			return false;
 		Arco<T> arco = (Arco<T>) obj;
-		return arco.getVerticeOrigen() == this.getVerticeOrigen() && arco.getVerticeDestino() == this.verticeDestino;
+		return arco.getVerticeOrigen() == this.getVerticeOrigen() && arco.getVerticeDestino() == this.getVerticeDestino();
 	}
 
 }

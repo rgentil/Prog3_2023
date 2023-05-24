@@ -1,5 +1,7 @@
 package tudai.prog3.main;
 
+import java.util.List;
+
 import tudai.prog3.colecctions.Grafo;
 import tudai.prog3.colecctions.GrafoDirigido;
 import tudai.prog3.recorridos.BFS;
@@ -29,16 +31,14 @@ public class Main {
 //		g.agregarArco(11, 9, "");
 //		g.agregarArco(11, 10, "");
 //		g.agregarArco(11, 8, "");
-//		
 
 		g.agregarArco(1, 2, null);
 		g.agregarArco(1, 3, null);
+		g.agregarArco(1, 1, null);
 		g.agregarArco(2, 5, null);
 		g.agregarArco(3, 4, null);
-		g.agregarArco(4, 5, null);
-
-		// Ciclo
 		g.agregarArco(4, 1, null);
+		g.agregarArco(4, 5, null);
 
 		System.out.println("Grafo:");
 		g.imprimir();
@@ -94,10 +94,16 @@ public class Main {
 		 */
 		int origen = 1;
 		int destino = 5;
-		int lim = 5;
-		
-		System.out
-				.println("\nTPE \n Origen: " + origen + " \n" + " Desino: " + destino + " \n Limite: " + lim +"\n" + dfs.tpe_caminos(origen, destino,lim).toString());
+		int lim = 3;
+
+		System.out.println("\nTPE \n Origen: " + origen + " \n" + " Desino: " + destino + " \n Limite: " + lim + "\n");
+
+		List<List<Integer>> caminos = dfs.tpe_caminos(origen, destino, lim);
+		System.out.println("\nCaminos: ");
+		for (List<Integer> list : caminos) {
+			System.out.println(list.toString());
+		}
+
 	}
 
 }
