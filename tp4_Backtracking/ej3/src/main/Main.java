@@ -26,7 +26,7 @@ public class Main {
 
 		Backtracking backtracking = new Backtracking(numeros, 6);
 
-		List<List<Integer>> resultado = backtracking.subconjuntos();
+		List<List<Integer>> resultado = backtracking.getSubConjuntos();
 		for (List<Integer> subset : resultado) {
 			System.out.println(subset);
 		}

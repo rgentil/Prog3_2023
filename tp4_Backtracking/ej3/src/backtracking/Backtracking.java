@@ -13,38 +13,43 @@ import java.util.List;
  */
 public class Backtracking {
 
-	private List<Integer> numeros;
-	private Integer M;
+	private List<Integer> conjunto_numeros;
+	private List<Integer> sub_conjunto;
+	private List<List<Integer>> sub_conjuntos;
+	private int M;
 
-	public Backtracking(List<Integer> numeros, Integer M) {
-		this.numeros = numeros;
+	public Backtracking(List<Integer> c, int M) {
+		this.conjunto_numeros = c;
 		this.M = M;
+		this.sub_conjuntos = new ArrayList<List<Integer>>();
+		this.sub_conjunto = new ArrayList<Integer>();
 	}
 
-	public List<List<Integer>> subconjuntos() {
-		List<Integer> parcial = new ArrayList<Integer>();
-		List<List<Integer>> solucion = new ArrayList<List<Integer>>();
-		_subconjuntos(numeros, parcial, solucion, M, 0);
-		return solucion;
+	public List<List<Integer>> getSubConjuntos() {
+		_getSubConjuntos(conjunto_numeros, sub_conjunto, sub_conjuntos, M, 0);
+		return sub_conjuntos;
 	}
 
-	private void _subconjuntos(List<Integer> conjunto_numeros, List<Integer> parcial, List<List<Integer>> solucion,
-			Integer remanente, int inicio) {
-		if (remanente == 0) {
-			solucion.add(new ArrayList<Integer>(parcial));
-		} else {
-			for (int i = inicio; i < conjunto_numeros.size(); i++) {
-				Integer num = conjunto_numeros.get(i);
-				if (num <= remanente && !parcial.contains(num)) {
-					parcial.add(num);
-					remanente -= num;
-					inicio += 1;
-					_subconjuntos(conjunto_numeros, parcial, solucion, remanente, inicio);
-					parcial.remove(num);
-					remanente += num;
-					inicio -= 1;
-				}
+	private void _getSubConjuntos(List<Integer> conjunto_numeros, List<Integer> sub_conjunto,
+			List<List<Integer>> sub_conjuntos, int M, int suma) {
+		if (conjunto_numeros.isEmpty()) {
+			if (suma == M) {
+				sub_conjuntos.add(new ArrayList<Integer>(sub_conjunto));
 			}
+		} else {
+			// Estado en el que el numero del conjunto no va en el sub conjunto resultado
+			Integer numero = conjunto_numeros.remove(0);
+			_getSubConjuntos(conjunto_numeros, sub_conjunto, sub_conjuntos, M, suma);
+			conjunto_numeros.add(0, numero);
+
+			// Estado en el que el numero del conjunto si va en el sub conjunto resultado
+			numero = conjunto_numeros.remove(0);
+			suma += numero;
+			sub_conjunto.add(numero);
+			_getSubConjuntos(conjunto_numeros, sub_conjunto, sub_conjuntos, M, suma);
+			conjunto_numeros.add(0, numero);
+			suma -= numero;
+			sub_conjunto.remove(numero);
 		}
 
 	}

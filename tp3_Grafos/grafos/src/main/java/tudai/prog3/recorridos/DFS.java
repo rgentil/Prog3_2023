@@ -251,26 +251,28 @@ public class DFS {
 		return caminos;
 	}
 
-	private void _tpe_caminos(Integer origen, Integer destino, Integer lim_arcos, List<Integer> camino,
+	private void _tpe_caminos(Integer verticeActual, Integer destino, Integer lim_arcos, List<Integer> camino,
 			List<List<Integer>> caminos) {
 		
-		camino.add(origen);
+		camino.add(verticeActual);
 		
-		if (origen.equals(destino) && arcos_recorridos.size() > 0 && arcos_recorridos.size() <= lim_arcos) {
+		if (verticeActual.equals(destino) && arcos_recorridos.size() > 0 && arcos_recorridos.size() <= lim_arcos) {
 			caminos.add(new ArrayList<Integer>(camino));
 		} 
 		else {
-			for (Iterator<Integer> it = grafo.obtenerAdyacentes(origen); it.hasNext();) {
+			for (Iterator<Integer> it = grafo.obtenerAdyacentes(verticeActual); it.hasNext();) {
 				Integer ady = (Integer) it.next();
-				Arco<?> arco = new Arco<Integer>(origen, ady, null);
+				Arco<?> arco = new Arco<Integer>(verticeActual, ady, null);
 				if (!arcos_recorridos.contains(arco)) {
 					arcos_recorridos.add(arco);
-					_tpe_caminos(ady, destino, lim_arcos, camino, caminos);
+					if (arcos_recorridos.size() <= lim_arcos) {
+						_tpe_caminos(ady, destino, lim_arcos, camino, caminos);
+					}
 					arcos_recorridos.remove(arco);
 				}
 			}
 		}
-		camino.remove(origen);
+		camino.remove(verticeActual);
 	}
 
 }

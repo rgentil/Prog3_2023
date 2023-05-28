@@ -94,7 +94,7 @@ public class Main {
 		 */
 		int origen = 1;
 		int destino = 5;
-		int lim = 3;
+		int lim = 10;
 
 		System.out.println("\nTPE \n Origen: " + origen + " \n" + " Desino: " + destino + " \n Limite: " + lim + "\n");
 
