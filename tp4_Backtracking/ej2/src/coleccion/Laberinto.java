@@ -1,8 +1,21 @@
-package Coleccion;
+package coleccion;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Ejercicio 2. Dado un laberinto consistente en una matriz cuadrada que tiene
+ * en cada posición un valor natural y cuatro valores booleanos, indicando estos
+ * últimos si desde esa casilla se puede ir al norte, este, sur y oeste,
+ * encontrar un camino de longitud mínima entre dos casillas dadas, siendo la
+ * longitud de un camino la suma de los valores naturales de las casillas por
+ * las que pasa. Idea: podría representarse el laberinto como una matriz, de
+ * objetos, donde cada objeto tiene el valor natural, y cuatro booleanos, uno
+ * para cada dirección a la que se permite ir desde allí.
+ * 
+ * @author Gentil Ricardo
+ *
+ */
 public class Laberinto {
 
 	private Nodo[][] laberinto;
@@ -19,7 +32,7 @@ public class Laberinto {
 	}
 
 	public void imprimir() {
-		System.out.println("Laberinto ["+N+"]["+N+"] : ");
+		System.out.println("Laberinto [" + N + "][" + N + "] : ");
 		for (int i = 0; i < N; i++) {
 			System.out.println();
 			for (int j = 0; j < N; j++) {
@@ -48,6 +61,6 @@ public class Laberinto {
 			nodos.add(this.getNodo(nodoActual.getFila(), nodoActual.getColumna() - 1));
 		}
 		return nodos;
-		
+
 	}
 }

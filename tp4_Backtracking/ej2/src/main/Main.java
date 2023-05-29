@@ -2,9 +2,9 @@ package main;
 
 import java.util.List;
 
-import Coleccion.Laberinto;
-import Coleccion.Nodo;
 import backtracking.Backtracking;
+import coleccion.Laberinto;
+import coleccion.Nodo;
 
 /**
  * Ejercicio 2. Dado un laberinto consistente en una matriz cuadrada que tiene
