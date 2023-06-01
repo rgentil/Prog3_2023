@@ -58,13 +58,13 @@ public class Jardin {
 		}
 
 		// Puedo ir a la abajo
-		if (fila < N-1) {
+		if (fila < N - 1) {
 			Casilla casilla = this.getCasilla(fila + 1, columna);
 			casillas.add(casilla);
 		}
 
 		// Puedo ir hacia derecha
-		if (columna < N-1) {
+		if (columna < N - 1) {
 			Casilla casilla = this.getCasilla(fila, columna + 1);
 			casillas.add(casilla);
 		}
@@ -77,6 +77,55 @@ public class Jardin {
 
 		return casillas;
 
+	}
+
+	public List<Casilla> casillasSiguientesPisadas(Casilla casilla_actual, List<Casilla> yaPaso) {
+		List<Casilla> casillas = new ArrayList<Casilla>();
+		int fila = casilla_actual.getFila();
+		int columna = casilla_actual.getColumna();
+		// Puedo ir a la arriba
+		if (fila > 0) {
+			Casilla casilla = this.getCasilla(fila - 1, columna);
+			if (!yaPaso.contains(casilla) && casilla.isPisada()) {
+				casillas.add(casilla);
+			}
+		}
+		// Puedo ir a la abajo
+		if (fila < N - 1) {
+			Casilla casilla = this.getCasilla(fila + 1, columna);
+			if (!yaPaso.contains(casilla) && casilla.isPisada()) {
+				casillas.add(casilla);
+			}
+		}
+
+		// Puedo ir hacia derecha
+		if (columna < N - 1) {
+			Casilla casilla = this.getCasilla(fila, columna + 1);
+			if (!yaPaso.contains(casilla) && casilla.isPisada()) {
+				casillas.add(casilla);
+			}
+		}
+
+		// Puedo ir hacia izq
+		if (columna > 0) {
+			Casilla casilla = this.getCasilla(fila, columna - 1);
+			if (!yaPaso.contains(casilla) && casilla.isPisada()) {
+				casillas.add(casilla);
+			}
+		}
+		return casillas;
+	}
+
+	public Casilla siguienteCasilla(Casilla casilla_actual) {
+		int fila = casilla_actual.getFila();
+		int columna = casilla_actual.getColumna();
+		if (fila == N - 1) {
+			return null;
+		}
+		if (columna == N - 1) {
+			return this.getCasilla(fila + 1, 0);
+		}
+		return this.getCasilla(fila, columna + 1);
 	}
 
 }

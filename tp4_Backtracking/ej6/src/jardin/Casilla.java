@@ -20,12 +20,14 @@ public class Casilla {
 	private String nombre;
 	private int fila;
 	private int columna;
+	private boolean pisada;
 
 	public Casilla(int f, int c) {
 		super();
 		this.nombre = "(" + f + "," + c + ")";
 		this.fila = f;
 		this.columna = c;
+		this.pisada = false;
 	}
 
 	public String getNombre() {
@@ -38,6 +40,14 @@ public class Casilla {
 
 	public int getColumna() {
 		return columna;
+	}
+
+	public boolean isPisada() {
+		return pisada;
+	}
+
+	public void setPisada(boolean pisada) {
+		this.pisada = pisada;
 	}
 
 	@Override

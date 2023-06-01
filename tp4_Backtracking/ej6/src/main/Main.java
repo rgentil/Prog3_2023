@@ -39,17 +39,25 @@ public class Main {
 
 		jardin.imprimir();
 
-		System.out.println("");
+		System.out.println("\nCamino del caballo: [(0,2), (1,2), (1,1), (0,1)]\n");
+		jardin.getCasilla(0, 2).setPisada(true);
+		jardin.getCasilla(1, 2).setPisada(true);
+		jardin.getCasilla(1, 1).setPisada(true);
+		jardin.getCasilla(0, 1).setPisada(true);
 
 		Backtracking backtracking = new Backtracking(jardin);
+		System.out.println("\nPosible camino encontrado, sin saber el inicio");
+		List<Casilla> caminoPosible = backtracking.getCaminoPosible();
+		for (Casilla casilla : caminoPosible) {
+			System.out.print(" " + casilla.getNombre());
+		}
 
-		System.out.println("");
 		Casilla inicio = new Casilla(0, 1);
-		System.out.println("Inicio por " + inicio.getNombre());
+		System.out.println("\n\nInicio por " + inicio.getNombre());
 
 		List<List<Casilla>> caminos_recorridos = backtracking.getCaminoDelCaballoDeAtila(inicio);
 
-		System.out.println("Caminos recorrido: ");
+		System.out.println("Todos los caminos recorridos posibles del caballo: ");
 		int i = 1;
 		for (List<Casilla> camino : caminos_recorridos) {
 			System.out.println("Camino " + i + ": " + camino.toString());

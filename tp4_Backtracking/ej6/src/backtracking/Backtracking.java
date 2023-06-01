@@ -56,4 +56,25 @@ public class Backtracking {
 		camino.remove(camino.size() - 1);
 	}
 
+	public List<Casilla> getCaminoPosible() {
+		List<Casilla> yaPaso = new ArrayList<Casilla>();
+		Casilla inicio = jardin.getCasilla(0, 0);
+		return _getCaminoPosible(inicio, yaPaso);
+	}
+
+	private List<Casilla> _getCaminoPosible(Casilla casilla_actual, List<Casilla> yaPaso) {
+		if (!casilla_actual.isPisada()) {
+			Casilla casilla = jardin.siguienteCasilla(casilla_actual);
+			return _getCaminoPosible(casilla, yaPaso);
+		} else {
+			// Encontró una pisada
+			yaPaso.add(casilla_actual);
+			List<Casilla> casillas_siguientes = jardin.casillasSiguientesPisadas(casilla_actual, yaPaso);
+			for (Casilla casilla_siguiente : casillas_siguientes) {
+				return _getCaminoPosible(casilla_siguiente, yaPaso);
+			}
+		}
+		return yaPaso;
+	}
+
 }
