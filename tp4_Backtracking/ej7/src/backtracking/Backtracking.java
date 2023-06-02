@@ -38,30 +38,30 @@ public class Backtracking {
 	}
 
 	private void _ubicar(List<Integer> usados, Integer[][] tablero, int fila, int columna) {
-		if (fila == N) {
-			if (!esta_completo(tablero_resultado)) {
+		if (!esta_completo(tablero_resultado)) {
+			if (fila == N) {
 				if (verificarSuma(tablero)) {
 					copiarTablero(tablero_resultado, tablero);
 				}
-			}
-		} else {
-			if (columna == N) {
-				fila += 1;
-				_ubicar(usados, tablero, fila, 0);
-				fila -= 1;
 			} else {
-				for (int numero = 1; numero < K; numero++) {
-					Integer n = numero;
-					if (!usados.contains(n)) {
-						usados.add(n);
-						tablero[fila][columna] = n;
+				if (columna == N) {
+					fila += 1;
+					_ubicar(usados, tablero, fila, 0);
+					fila -= 1;
+				} else {
+					for (int numero = 1; numero < K; numero++) {
+						Integer n = numero;
+						if (!usados.contains(n)) {
+							usados.add(n);
+							tablero[fila][columna] = n;
 
-						columna += 1;
-						_ubicar(usados, tablero, fila, columna);
-						columna -= 1;
+							columna += 1;
+							_ubicar(usados, tablero, fila, columna);
+							columna -= 1;
 
-						tablero[fila][columna] = null;
-						usados.remove(usados.size() - 1);
+							tablero[fila][columna] = null;
+							usados.remove(usados.size() - 1);
+						}
 					}
 				}
 			}

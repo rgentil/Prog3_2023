@@ -45,11 +45,14 @@ public class Backtracking {
 			// Estado en el que el numero del conjunto si va en el sub conjunto resultado
 			numero = conjunto_numeros.remove(0);
 			suma += numero;
-			sub_conjunto.add(numero);
-			_getSubConjuntos(conjunto_numeros, sub_conjunto, sub_conjuntos, M, suma);
+			if (suma <= M) {
+				sub_conjunto.add(numero);
+				_getSubConjuntos(conjunto_numeros, sub_conjunto, sub_conjuntos, M, suma);
+				sub_conjunto.remove(numero);
+			}
 			conjunto_numeros.add(0, numero);
 			suma -= numero;
-			sub_conjunto.remove(numero);
+			
 		}
 
 	}
