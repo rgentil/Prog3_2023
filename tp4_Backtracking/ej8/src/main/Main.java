@@ -15,7 +15,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		int K = 15;
-		int base = 3;
+		int base = 5;
 		
 		Backtracking backtracking = new Backtracking(K, base);
 		

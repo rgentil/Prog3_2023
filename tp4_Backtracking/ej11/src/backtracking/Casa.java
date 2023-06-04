@@ -20,7 +20,6 @@ public class Casa {
 	public void compararCaminos() {
 		// Si no hay un camino agrega ese camino, si hay un camino ya encontrado, lo
 		// compara con el nuevo camino que se genero
-
 	}
 
 	public Celda getPosicionRobot() {
@@ -33,14 +32,14 @@ public class Casa {
 		return null;
 	}
 
-	public Celda[] getCeldasHabilitadas() {
+	public Celda[] getCeldasHabilitadas(Celda celda) {
 		// Me da un listado de celda que estan habilitadas, en 0, y pueda moverme
 		// horizontal o
 		// verticalmente para generar un nuevo estado.
 		return null;
 	}
 
-	public boolean celdaNoUsada(Celda celda) {
+	public boolean celdaUsada(Celda celda) {
 		// Controla si ya se ha pasado por esa celdaS
 		return false;
 	}
@@ -62,6 +61,16 @@ public class Casa {
 
 	public void quitarSelda(Celda celda) {
 		// Quita la celda del posible camino solucion para probar estos estados.
+
+	}
+
+	public Celda getCeldaActual() {
+		// Me devuelve la selda actual en dónde está el robot
+		return null;
+	}
+
+	public void quitarUltimaCelda() {
+		// Saca la última celda que se agregó como visitada.
 
 	}
 

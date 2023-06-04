@@ -33,11 +33,12 @@ public class Backtracking {
 		} else {
 			System.out.println("Naranja lima");
 		}
+		System.out.println(intentos);
 		return piramide;
 	}
 
 	private boolean _generarPiramide(Integer[][] piramide, ArrayList<Integer> usados, int indice) {
-
+		intentos++;
 		if (indice == base) {
 			if (sePudoCompletar(piramide)) {
 				return true;
@@ -63,12 +64,13 @@ public class Backtracking {
 	}
 
 	private boolean sePudoCompletar(Integer[][] piramide) {
-		if (intentos == 2000) {
-			return true;
-		} else {
-			intentos++;
-			return false;
-		}
+//		if (intentos == 2000) {
+//			return true;
+//		} else {
+//			intentos++;
+//			return false;
+//		}
+		return false;
 	}
 
 }

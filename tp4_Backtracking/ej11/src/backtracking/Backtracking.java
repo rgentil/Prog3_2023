@@ -43,17 +43,16 @@ public class Backtracking {
 		if (casa.getPosicionRobot() == casa.getPosicionCargador()) {
 			casa.compararCaminos();
 		} else {
-			for (Celda celda : casa.getCeldasHabilitadas()) {// Acá va la poda, me da una lista solo con las seldas
-																// a las que puedo ir
-				if (casa.celdaNoUsada(celda)) { // y se agrga a al poda que esa celda no haya sido visitada
+			Celda celda_actual = casa.getCeldaActual();
+			for (Celda celda : casa.getCeldasHabilitadas(celda_actual)) {// Acá va la poda, me da una lista solo con las
+				if (!casa.celdaUsada(celda)) { // y se agrga a al poda que esa celda no haya sido visitada
 					casa.agregaSelda(celda);
 					casa.moverRobot(celda);
 					_getCaminoMasCorto(casa); // Llamo recursivo para el nuevo estado.
-					casa.volverRobot(celda);
-					casa.quitarSelda(celda);
+					casa.quitarUltimaCelda();
+					casa.volverRobot(celda_actual);
 				}
 			}
 		}
-
 	}
 }
