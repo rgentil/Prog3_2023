@@ -241,8 +241,10 @@ public class Tree {
 		if (actualLevel == level) {
 			listElements.add(node.getValue());
 		}
-		getElemAtLevel(node.getLeft(), actualLevel + 1, level, listElements);
-		getElemAtLevel(node.getRight(), actualLevel + 1, level, listElements);
+		actualLevel += 1;
+		getElemAtLevel(node.getLeft(), actualLevel, level, listElements);
+		getElemAtLevel(node.getRight(), actualLevel, level, listElements);
+		actualLevel -= 1;
 	}
 
 	/*

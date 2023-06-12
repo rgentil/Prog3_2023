@@ -10,13 +10,13 @@ package greedy;
  *
  */
 
-public class Greedy {
+public class CazadoresDeLeones {
 	private int k;
 	private Integer[] africa = { 2, 0, 0, 1, 1, 0, 2, 1, 0, 2 };// Los 1 son cazadores los 2 leones 0 espacios
 	// vacios.
 
-	public Greedy(int k) {
-		this.k = 3;
+	public CazadoresDeLeones(int k) {
+		this.k = k;
 	}
 
 	public int cazar() {
@@ -24,7 +24,7 @@ public class Greedy {
 		int i = 0;
 		while (i < africa.length) {
 			if (africa[i] == 1) {
-				if (matoLeonMasCercano(i)) {
+				if (matoLeonMasCercanoNoMasLejanoQueKPasosK(i, k)) {
 					nroLeonesCazados += 1;
 				}
 			}
@@ -33,7 +33,7 @@ public class Greedy {
 		return nroLeonesCazados;
 	}
 
-	private boolean matoLeonMasCercano(int i) {
+	private boolean matoLeonMasCercanoNoMasLejanoQueKPasosK(int i, int k) {
 		boolean mato = false;
 		int posIzq = i - 1;
 		int pasosIzq = 1;
@@ -62,10 +62,10 @@ public class Greedy {
 		if (encontroLeonALaIzquierda && encontroLeonALaDerecha) {
 			if (pasosDer >= pasosIzq) {
 				africa[posIzq] = 0;
-			}else {
-				africa[posDer] = 0;	
+			} else {
+				africa[posDer] = 0;
 			}
-			
+
 			mato = true;
 		}
 

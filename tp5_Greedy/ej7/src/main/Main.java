@@ -1,6 +1,6 @@
 package main;
 
-import greedy.Greedy;
+import greedy.CazadoresDeLeones;
 
 /**
  * Ejercicio 7 Atrapando leones. Dado un arreglo donde en cada posición se
@@ -14,10 +14,10 @@ import greedy.Greedy;
 public class Main {
 
 	public static void main(String[] args) {
-		int k = 1;
-		Greedy greedy = new Greedy(k);
+		int k = 3;
+		CazadoresDeLeones cazadoresDeLeones = new CazadoresDeLeones(k);
 
-		System.out.println("Cantidad de lones cazados: " + greedy.cazar());
+		System.out.println("Cantidad de leones cazados: " + cazadoresDeLeones.cazar());
 
 	}
 

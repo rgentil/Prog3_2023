@@ -32,13 +32,19 @@ public class Main {
 //		g.agregarArco(11, 10, "");
 //		g.agregarArco(11, 8, "");
 
+//		g.agregarArco(1, 1, null);
+//		g.agregarArco(1, 2, null);
+//		g.agregarArco(1, 3, null);	
+//		g.agregarArco(3, 2, null);
+//		g.agregarArco(2, 5, null);		
+//		g.agregarArco(3, 4, null);
+//		g.agregarArco(4, 1, null);
+//		g.agregarArco(4, 5, null);
+
 		g.agregarArco(1, 2, null);
-		g.agregarArco(1, 3, null);
-		g.agregarArco(1, 1, null);
-		g.agregarArco(2, 5, null);
+		g.agregarArco(2, 3, null);
+		g.agregarArco(3, 1, null);
 		g.agregarArco(3, 4, null);
-		g.agregarArco(4, 1, null);
-		g.agregarArco(4, 5, null);
 
 		System.out.println("Grafo:");
 		g.imprimir();
@@ -57,43 +63,48 @@ public class Main {
 
 		/**
 		 * Ejercicio 3. Implemente un algoritmo que determine si un grafo dirigido tiene
-		 * algún ciclo.
+		 * algï¿½n ciclo.
 		 */
-		System.out.println("\nComprobar si un grafo dirigido tiene algún ciclo");
+		System.out.println("\nComprobar si un grafo dirigido tiene algï¿½n ciclo");
 		System.out.println("Tiene ciclos: " + dfs.tieneCiclos());
+		List<List<Integer>> caminosConCiclos = dfs.caminosConCiclos();
+		System.out.println("\nCaminos con ciclo: ");
+		for (List<Integer> list : caminosConCiclos) {
+			System.out.println(list.toString());
+		}
 
 		/**
-		 * Ejercicio 4. Escribir un algoritmo que, dado un grafo dirigido y dos vértices
+		 * Ejercicio 4. Escribir un algoritmo que, dado un grafo dirigido y dos vï¿½rtices
 		 * i, j de este grafo, devuelva el camino simple (sin ciclos) de mayor longitud
-		 * del vértice i al vértice j. Puede suponerse que el grafo de entrada es
-		 * acíclico.
+		 * del vï¿½rtice i al vï¿½rtice j. Puede suponerse que el grafo de entrada es
+		 * acï¿½clico.
 		 */
 
 		int i = 1;
-		int j = 5;
-		System.out.println("\n Camino simple (sin ciclos) de mayor longitud del vértice " + i + " al vértice " + j
+		int j = 4;
+		System.out.println("\n Camino simple (sin ciclos) de mayor longitud del vï¿½rtice " + i + " al vï¿½rtice " + j
 				+ " :\n" + dfs.getCaminoSimple(i, j).toString());
 
-		System.out.println("\nTodos los caminos vértice " + i + " al vértice " + j + " :\n"
+		System.out.println("\nTodos los caminos vï¿½rtice " + i + " al vï¿½rtice " + j + " :\n"
 				+ dfs.getCaminosSimple(i, j).toString());
 
 		/**
-		 * Ejercicio 5. Escriba un algoritmo que dado un grafo G y un vértice v de dicho
-		 * grafo, devuelva una lista con todos los vértices a partir de los cuales
+		 * Ejercicio 5. Escriba un algoritmo que dado un grafo G y un vï¿½rtice v de dicho
+		 * grafo, devuelva una lista con todos los vï¿½rtices a partir de los cuales
 		 * exista un camino en G que termine en v.
 		 */
-		int v = 11;
+		int v = 4;
 		System.out
 				.println("\nTodos los caminos que terminan en " + v + " :\n" + dfs.getCaminosTerminanEnV(v).toString());
 
 		/**
-		 * Caminos : dado un origen, un destino y un límite “lim” retorna todos los
-		 * caminos que, partiendo del vértice origen, llega al vértice de destino sin
-		 * pasar por más de “lim” arcos. Aclaración importante: en un camino no se puede
+		 * Caminos : dado un origen, un destino y un lï¿½mite ï¿½limï¿½ retorna todos los
+		 * caminos que, partiendo del vï¿½rtice origen, llega al vï¿½rtice de destino sin
+		 * pasar por mï¿½s de ï¿½limï¿½ arcos. Aclaraciï¿½n importante: en un camino no se puede
 		 * pasar 2 veces por el mismo arco.
 		 */
 		int origen = 1;
-		int destino = 5;
+		int destino = 4;
 		int lim = 10;
 
 		System.out.println("\nTPE \n Origen: " + origen + " \n" + " Desino: " + destino + " \n Limite: " + lim + "\n");
@@ -104,6 +115,25 @@ public class Main {
 			System.out.println(list.toString());
 		}
 
+		/**
+		 * Ejercicio 8 Dados un grafo G con sus vÃ©rtices rotulados con colores y dos
+		 * vÃ©rtices v1 y v2, escriba un algoritmo que encuentre un camino desde el
+		 * vÃ©rtice v1 al vÃ©rtice v2 tal que no pase por vÃ©rtices rotulados con el color
+		 * rojo.
+		 */
+		Grafo<String> gc = new GrafoDirigido<String>();
+		gc.agregarArco(1, 2, "rojo");
+		gc.agregarArco(1, 3, "");
+		gc.agregarArco(2, 3, "");
+		gc.agregarArco(3, 1, "");
+		gc.agregarArco(3, 4, "");
+
+		gc.imprimirPonderado();
+		int v1 = 1;
+		int v2 = 4;
+		String color = "rojo";
+		System.out.println("\n Camino que no pase por " + color + " desde " + v1 + " al vï¿½rtice " + v2 + " :\n"
+				+ dfs.getCaminoQueNoPasePorUnColor(gc, i, j, color).toString());
 	}
 
 }

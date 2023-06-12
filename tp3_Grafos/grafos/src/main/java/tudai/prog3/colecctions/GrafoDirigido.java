@@ -128,5 +128,19 @@ public class GrafoDirigido<T> implements Grafo<T> {
 			System.out.println();
 		}
 	}
+	
+	@Override
+	public void imprimirPonderado() {
+		System.out.println("Grafo ponderado");
+		for (Iterator<Integer> iteratorV = this.obtenerVertices(); iteratorV.hasNext();) {
+			Integer vertice = (Integer) iteratorV.next();
+			System.out.print(vertice + " -> ");
+			for (Iterator<Arco<T>> iteratorA = this.obtenerArcos(vertice); iteratorA.hasNext();) {
+				Arco<T> ady = (Arco<T>) iteratorA.next();
+				System.out.print(ady.getVerticeDestino() + "(" + ady.getEtiqueta() + ") ");
+			}
+			System.out.println();
+		}
+	}
 
 }
