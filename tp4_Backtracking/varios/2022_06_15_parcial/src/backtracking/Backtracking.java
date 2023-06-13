@@ -88,7 +88,9 @@ public class Backtracking {
 	}
 
 	/**
-	 * Me devuelte todas las estaciones hasta las que puedo llegar con un tanque desde la estacion actual
+	 * Me devuelte todas las estaciones hasta las que puedo llegar con un tanque
+	 * desde la estacion actual
+	 * 
 	 * @param estacion_actual
 	 * @param k
 	 * @return
@@ -100,4 +102,39 @@ public class Backtracking {
 	private int distancia(String e1, String e2) {
 		return 0;
 	}
+
+	public List<String> back3() {
+		ArrayList<String> paradas = new ArrayList<String>();
+		Estaciones estaciones = new Estaciones();
+		String estacion_inicio = estaciones.getEstacionActual();
+		paradas.add(estacion_inicio);
+		_back3(llenar_tanque, estacion_inicio, estaciones, paradas);
+		return paradas;
+	}
+
+	private void _back3(int K, String estacion_actual, Estaciones estaciones, ArrayList<String> paradas) {
+		if (estaciones.llegoAlFinal(estacion_actual)) {
+			if (estaciones.getCantParadas() > paradas.size()) {
+				estaciones.setCantParadas(paradas.size());
+			}
+		} else {
+			estacion_actual = estaciones.getEstacionActual();// La quita de la lista de estaciones;
+			String estacion_siguiente = estaciones.getEstacionSiguiente(estacion_actual);// la quita de la lista de
+																							// estaciones;
+			int distancia = this.distancia(estacion_actual, estacion_siguiente);
+
+			if (distancia >= K) {
+				paradas.add(estacion_actual);
+				_back3(llenar_tanque, estacion_actual, estaciones, paradas);
+				paradas.remove(paradas.size() - 1);
+			} else {
+				_back3(K - distancia, estacion_siguiente, estaciones, paradas);
+			}
+
+			estaciones.agregarEstacion(estacion_siguiente);
+			estaciones.agregarEstacion(estacion_actual);
+
+		}
+	}
+
 }
