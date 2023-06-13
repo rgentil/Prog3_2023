@@ -8,13 +8,13 @@ import coleccion.Nodo;
 
 /**
  * Ejercicio 2. Dado un laberinto consistente en una matriz cuadrada que tiene
- * en cada posición un valor natural y cuatro valores booleanos, indicando estos
- * últimos si desde esa casilla se puede ir al norte, este, sur y oeste,
- * encontrar un camino de longitud mínima entre dos casillas dadas, siendo la
+ * en cada posiciï¿½n un valor natural y cuatro valores booleanos, indicando estos
+ * ï¿½ltimos si desde esa casilla se puede ir al norte, este, sur y oeste,
+ * encontrar un camino de longitud mï¿½nima entre dos casillas dadas, siendo la
  * longitud de un camino la suma de los valores naturales de las casillas por
- * las que pasa. Idea: podría representarse el laberinto como una matriz, de
+ * las que pasa. Idea: podrï¿½a representarse el laberinto como una matriz, de
  * objetos, donde cada objeto tiene el valor natural, y cuatro booleanos, uno
- * para cada dirección a la que se permite ir desde allí.
+ * para cada direcciï¿½n a la que se permite ir desde allï¿½.
  * 
  * @author Gentil Ricardo
  *
@@ -34,7 +34,7 @@ public class Backtracking {
 	public List<Nodo> getCaminoMinimo(int fi, int ci, int fd, int cd) {
 		List<Nodo> caminoActual = new ArrayList<Nodo>();
 		List<Nodo> resultado = new ArrayList<Nodo>();
-		this.valorFinal = null;
+		this.valorFinal = Integer.MAX_VALUE;
 		Integer valorParcial = 0;
 		Nodo nodoActual = laberinto.getNodo(fi, ci);
 		nodosVisitados.add(nodoActual);
@@ -50,14 +50,15 @@ public class Backtracking {
 		valorParcial += nodoActual.getValor();
 
 		if (nodoActual.equals(nodoDestino)) {
-			if (valorFinal == null || valorFinal >= valorParcial) {
+			if (valorFinal >= valorParcial) {
 				valorFinal = valorParcial;
 				resultado.clear();
 				resultado.addAll(caminoActual);
 			}
 		} else {
 			for (Nodo nodoVecino : laberinto.getNodosDesde(nodoActual)) {
-				if (!nodosVisitados.contains(nodoVecino)) {
+				int valor_para_la_poda = nodoVecino.getValor() + valorParcial;
+				if (!nodosVisitados.contains(nodoVecino) && valor_para_la_poda < valorFinal) {
 					nodosVisitados.add(nodoVecino);
 					_getCaminoMinimo(nodoVecino, nodoDestino, caminoActual, resultado, valorParcial);
 					nodosVisitados.remove(nodoVecino);

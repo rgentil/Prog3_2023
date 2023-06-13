@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Ejercicio 4. Partición de conjunto. Dado un conjunto de n enteros se desea
- * encontrar, si existe, una partición en dos subconjuntos disjuntos, tal que la
+ * Ejercicio 4. Particiï¿½n de conjunto. Dado un conjunto de n enteros se desea
+ * encontrar, si existe, una particiï¿½n en dos subconjuntos disjuntos, tal que la
  * suma de sus elementos sea la misma.
  * 
  * @author Gentil Ricardo
@@ -41,17 +41,17 @@ public class Backtracking {
 				}
 			} else {
 				// La disicion es ponerlo en el conjunto 1 o el 2
-				Integer numero = numeros.remove(0);
-				conjunto1.add(0, numero);
+				Integer numero = numeros.remove(numeros.size() - 1);
+				
+				conjunto1.add(numero);
 				_getSubConjuntosDisjuntosIguales(numeros, conjunto1, conjunto2, resultado);
-				numeros.add(0, numero);
-				conjunto1.remove(0);
+				conjunto1.remove(conjunto1.size() - 1);
 
-				numero = numeros.remove(0);
-				conjunto2.add(0, numero);
+				conjunto2.add(numero);
 				_getSubConjuntosDisjuntosIguales(numeros, conjunto1, conjunto2, resultado);
-				numeros.add(0, numero);
-				conjunto2.remove(0);
+				conjunto2.remove(conjunto2.size() - 1);
+				
+				numeros.add(numero);
 			}
 		}
 	}

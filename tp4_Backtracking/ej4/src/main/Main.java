@@ -6,8 +6,8 @@ import java.util.List;
 import backtracking.Backtracking;
 
 /**
- * Ejercicio 4. Partición de conjunto. Dado un conjunto de n enteros se desea
- * encontrar, si existe, una partición en dos subconjuntos disjuntos, tal que la
+ * Ejercicio 4. Particiï¿½n de conjunto. Dado un conjunto de n enteros se desea
+ * encontrar, si existe, una particiï¿½n en dos subconjuntos disjuntos, tal que la
  * suma de sus elementos sea la misma.
  * 
  * @author Gentil Ricardo
@@ -25,13 +25,15 @@ public class Main {
 		numeros.add(5);
 		numeros.add(1);
 
+		System.out.println("Conjunto de numeros para particionar: " + numeros.toString());
+
 		Backtracking backtracking = new Backtracking(numeros);
 
 		List<List<Integer>> resultado = backtracking.getSubConjuntosDisjuntosIguales();
 		if (resultado.isEmpty()) {
-			System.out.println("No se encontró una partición equilibrada.");
+			System.out.println("No se encontrï¿½ una particiï¿½n equilibrada.");
 		} else {
-			System.out.println("Partición equilibrada encontrada:");
+			System.out.println("Particiï¿½n equilibrada encontrada:");
 			for (List<Integer> subset : resultado) {
 				System.out.println(subset);
 			}

@@ -5,10 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Ejercicio 5. Asignación de tareas a procesadores. Se tienen m procesadores
- * idénticos y n tareas con un tiempo de ejecución dado. Se requiere encontrar
- * una asignación de tareas a procesadores de manera de minimizar el tiempo de
- * ejecución del total de tareas.
+ * Ejercicio 5. Asignaciï¿½n de tareas a procesadores. Se tienen m procesadores
+ * idï¿½nticos y n tareas con un tiempo de ejecuciï¿½n dado. Se requiere encontrar
+ * una asignaciï¿½n de tareas a procesadores de manera de minimizar el tiempo de
+ * ejecuciï¿½n del total de tareas.
  * 
  * @author Gentil Ricardo
  *
@@ -39,7 +39,7 @@ public class Backtracking {
 
 	public List<List<Tarea>> asignarNProcesadores() {
 		List<List<Tarea>> resultado = new ArrayList<List<Tarea>>();
-		mejorTiempo = null;
+		mejorTiempo = Integer.MAX_VALUE;
 		_asignarNProcesadores(tareas, procesadores, resultado);
 		return resultado;
 	}
@@ -48,16 +48,15 @@ public class Backtracking {
 			List<List<Tarea>> resultado) {
 		if (tareas.isEmpty()) {
 			int tiempoActual = getTiempoProcesamiento(procesadores);
-			if (mejorTiempo == null || tiempoActual < mejorTiempo.intValue()) {
+			if (tiempoActual < mejorTiempo.intValue()) {
 				mejorTiempo = tiempoActual;
 				resultado.clear();
-				// resultado.addAll(procesadores);
 				for (List<Tarea> p : procesadores) {
 					resultado.add(new ArrayList<Tarea>(p));
 				}
 			}
 		} else {
-			Tarea t = tareas.remove(0);
+			Tarea t = tareas.remove(tareas.size() - 1);
 			for (List<Tarea> procesador : procesadores) {
 				if (!procesador.contains(t)) {
 					procesador.add(t);
@@ -65,14 +64,14 @@ public class Backtracking {
 					procesador.remove(procesador.size() - 1);
 				}
 			}
-			tareas.add(0, t);
+			tareas.add(t);
 		}
 
 	}
 
 	public List<List<Tarea>> asignar() {
 		List<List<Tarea>> resultado = new ArrayList<List<Tarea>>();
-		mejorTiempo = null;
+		mejorTiempo = Integer.MAX_VALUE;
 		_asignar(tareas, procesador1, procesador2, procesador3, resultado);
 		return resultado;
 	}
@@ -81,7 +80,7 @@ public class Backtracking {
 			List<List<Tarea>> resultado) {
 		if (tareas.isEmpty()) {
 			int tiempoActual = getTiempoProcesamiento(procesador1, procesador2, procesador3);
-			if (mejorTiempo == null || tiempoActual < mejorTiempo.intValue()) {
+			if ( tiempoActual < mejorTiempo.intValue()) {
 				mejorTiempo = tiempoActual;
 				resultado.clear();
 				resultado.add(new ArrayList<Tarea>(procesador1));
