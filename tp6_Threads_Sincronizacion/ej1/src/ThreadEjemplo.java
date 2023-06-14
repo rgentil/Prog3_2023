@@ -1,9 +1,10 @@
-
 class ThreadEjemplo extends Thread {
+	//Constructor sin asignarle nombre
     public ThreadEjemplo() {
         super();
     }
     
+    //Constructor asignando un nombre s al thread
     public ThreadEjemplo(String	s) {
         super(s);
     }
@@ -14,7 +15,6 @@ class ThreadEjemplo extends Thread {
         }
         System.out.println("Termina thread " + getName());
     }
-
 }
 
 
