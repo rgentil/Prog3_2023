@@ -50,4 +50,5 @@ public interface Grafo<T> {
 	public void imprimir();
 
 	void imprimirPonderado();
+
 }

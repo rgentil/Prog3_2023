@@ -120,7 +120,7 @@ public class DFS {
 				return true;
 			}
 		}
-		colores.put(vertice, "NEGRO");
+		colores.put(vertice, "BLANCO");
 		return false;
 	}
 
@@ -343,6 +343,56 @@ public class DFS {
 
 			}
 		}
+		return false;
+	}
+
+	/**
+	 * Dado un grafo dirigido, el cual contiene un solo ciclo, determine si, en caso
+	 * de que tenga un ciclo, la suma de los arcos del ciclo resulta ser igual a un
+	 * valor X dados como parametro.
+	 */
+	public boolean tieneCicloConSumaIgualAN(int N) {
+		inicializarEstructura();
+		List<Integer> camino = new ArrayList<Integer>();
+		for (Iterator<Integer> it = grafo.obtenerVertices(); it.hasNext();) {
+			Integer v = it.next();
+			if (colores.get(v).equals("BLANCO")) {
+				if (tieneCicloConSumaIgualAN(v, 0, N, camino)) {
+					System.out.println();
+					System.out.print(" |" + camino.toString() + "| ");
+					System.out.println();
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	private boolean tieneCicloConSumaIgualAN(Integer v, int cont, int n, List<Integer> camino) {
+		colores.put(v, "AMARILLO");
+		camino.add(v);
+		for (Iterator<?> it = grafo.obtenerArcos(v); it.hasNext();) {
+			Arco<Integer> arco = (Arco<Integer>) it.next();
+			Integer vAdy = arco.getVerticeDestino();
+			cont += arco.getEtiqueta();
+			if (colores.get(vAdy).equals("BLANCO")) {
+				boolean resultado = tieneCicloConSumaIgualAN(vAdy, cont, n, camino);
+				if (resultado) {
+					return true;
+				}
+			} else {
+				if (colores.get(vAdy).equals("AMARILLO")) {
+					if (cont == n) {
+						camino.add(vAdy);
+						return true;
+					}
+				}
+			}
+			cont -= arco.getEtiqueta();
+		}
+		colores.put(v, "BLANCO");
+		camino.remove(camino.size() - 1);
 		return false;
 	}
 

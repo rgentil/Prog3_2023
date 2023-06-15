@@ -134,6 +134,29 @@ public class Main {
 		String color = "rojo";
 		System.out.println("\n Camino que no pase por " + color + " desde " + v1 + " al v�rtice " + v2 + " :\n"
 				+ dfs.getCaminoQueNoPasePorUnColor(gc, i, j, color).toString());
+
+		/**
+		 * Dado un grafo dirigido, el cual contiene un solo ciclo, determine si, en caso
+		 * de que tenga un ciclo, la suma de los arcos del ciclo resulta ser igual a un
+		 * valor X dados como parametro.
+		 */
+		Grafo<Integer> grafo1 = new GrafoDirigido<Integer>();
+
+		grafo1.agregarArco(1, 2, 7);
+		grafo1.agregarArco(1, 3, 3);
+		grafo1.agregarArco(2, 3, 1);
+		grafo1.agregarArco(2, 4, 6);
+		grafo1.agregarArco(3, 5, 8);
+		grafo1.agregarArco(4, 3, 3);
+		grafo1.agregarArco(4, 6, 2);
+		grafo1.agregarArco(5, 4, 2);
+		grafo1.agregarArco(5, 6, 8);
+
+		System.out.println("Grafo del parcial :");
+		grafo1.imprimir();
+		DFS dfs1 = new DFS(grafo1);
+		boolean resultado = dfs1.tieneCicloConSumaIgualAN(13);
+		System.out.println("Tiene ciclo con suma igual a 13 " + resultado);
 	}
 
 }
