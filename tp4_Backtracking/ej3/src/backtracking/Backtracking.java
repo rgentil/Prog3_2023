@@ -78,7 +78,6 @@ public class Backtracking {
 				if (!visitados.contains(numero)) {
 					visitados.add(numero);
 					_getSubConjuntos2(conjunto_numeros, sub_conjunto, visitados, suma);
-
 					suma += numero.intValue();
 					if (suma <= M) {
 						sub_conjunto.add(numero);

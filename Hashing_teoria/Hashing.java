@@ -93,10 +93,10 @@ Hashing Separado con Crecimiento
 		Entonces L= | 12 * 1 * 0,5 | = 6
 	Entonces estamos diciendo que cuando la cantidad de elementos >= 6, vamos a hacer crecer la estructura primaria.
 		
-		ρd = 0,5  significa un 50% de ocupación.
-		ρd = 0,75 significa un 75% de ocupación.
+		ρd = 0,5  significa un 50% de ocupación en la estructura.
+		ρd = 0,75 significa un 75% de ocupación en la estructura.
 		
-		Si pd es mayor a una quiere decir que mi estrucura se va a llenar y mis elementos van a para a mis listas de rebalse.
+		Si pd es mayor a uno, pd > , quiere decir que mi estrucura se va a llenar y mis elementos van a para a mis listas de rebalse.
 		
 	El valor que se elije para ρd mantiene un equilibrio entre longitud de listas de rebalse vs espacio que se desperdicia.
 		Un valor grande provocará que la estructura se llene demasiado y probablemente haya más colisiones y listas de rebalse más largas.
@@ -207,9 +207,10 @@ Técnicas abiertas o dinámicas: JAVA HASHMAP
 	• Más avanzada que HASTABLE. Tiene algunas diferencias. Es más rápida. No es sincronizable.
 	
 	• Agrega mejora sobre la lista de rebalse, cuando la cantidad de elementos en la lista supera una cierta cantidad establecida, 
-		convierte la lista del balde en un árbol binairo de búsqueda balanceado, llevando asi los tiempos de búsqueda en
+		convierte la lista del balde en un árbol binario de búsqueda balanceado, llevando asi los tiempos de búsqueda en
 		el balde de O(n) a O(log2 n), con n = cantidad elementos del balde. 
 		Según esta cantidad tiene una lista vinculada o un arbol, por eso los valores de las búsquedas.
+		
 		
 HashMap y HashTable son dos estructuras de datos utilizadas en lenguajes de programación como Java para almacenar y recuperar pares clave-valor. 
 Aunque comparten algunas similitudes, también existen diferencias importantes entre ellas. 
@@ -235,6 +236,9 @@ A continuación, se presentan las principales diferencias entre HashMap y HashTa
 		HashTable es una clase más antigua y se considera una estructura de datos legada. Fue parte de la biblioteca original de Java antes de que se 
 		introdujera HashMap en la versión 1.2 de Java. HashMap fue diseñado para reemplazar HashTable y se considera la opción preferida en la mayoría de los casos.
 
+	• Estructura:
+		Las estructura internas, que puede ser arboles o lista dependiendo el caso para tener busqeudas mas efecientes.
+
 En resumen, las principales diferencias entre HashMap y HashTable se relacionan con la sincronización, el rendimiento, la manipulación de valores nulos, 
 el comportamiento de los iteradores y su legado. HashMap ofrece un mejor rendimiento, permite valores nulos y no está sincronizado, mientras que HashTable es sincronizado, 
 no permite valores nulos y es considerado una opción legada en comparación con HashMap.
@@ -257,7 +261,7 @@ En general, en una estructura de datos ¿qué hacer si hay claves repetidas?
 			Esto es un problema …
 			Por ejemplo archivo disperso de personas, con clave de búsqueda = Ciudad de Nacimiento. 
 			Para cada ciudad de nacimiento vamos a tener una o más personas que nacieron en esa ciudad. 
-			Por ejemplo cave de búsqueda=“Tandil”.
+			Por ejemplo clave de búsqueda=“Tandil”.
 			Dado que no es eficiente almacenar claves repetidas, la estrategia que se utiliza es la llamada lista de factoreo.
 
 			Entry para x=Tandil: Tandil , 
